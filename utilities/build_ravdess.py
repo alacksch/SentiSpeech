@@ -23,7 +23,7 @@ def buildravdess(ravdess_path):
         for filename in sorted(os.listdir(actor_path)): # in-actor level loop
             if filename.endswith('.wav'):
                 parts = filename.split('-')
-                emotion_code = int(parts[2]) # since emotion is the third number in the filename and it splits the filename into a list of all the information
+                emotion_code = int(parts[2]) # since emotion is the third number in the filename, and it splits the filename into a list of all the information
                 emotion = emotion_map[emotion_code]
                 full_path = os.path.join(ravdess_path, actor_folder, filename)
 
