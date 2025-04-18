@@ -1,3 +1,4 @@
+from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
@@ -15,3 +16,6 @@ grid_search = GridSearchCV(SVC(), param_grid, cv=5, scoring='accuracy', n_jobs=-
 
 grid_search.fit(X_train, y_train)
 y_pred = grid_search.best_estimator_.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
