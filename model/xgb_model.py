@@ -15,8 +15,8 @@ label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
 X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42)
 scaler = StandardScaler()
-X_train_scalled = scaler.fit_transform(X_train)
-X_test_scalled = scaler.transform(X_test)
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
 param_grid = {
     'n_estimators': [100, 300],
@@ -28,8 +28,8 @@ param_grid = {
 
 xgb = XGBClassifier(eval_metric='mlogloss')
 
-grid_search = GridSearchCV(xgb, param_grid, scoring='accuracy', cv=3, n_jobs=-1, verbose=1)
-grid_search.fit(X_train_scalled, y_train)
+grid_search = GridSearchCV(xgb, param_grid, scoring='accuracy', cv=5, n_jobs=-1, verbose=1)
+grid_search.fit(X, y_encoded)
 
 best_model = grid_search.best_estimator_
 print("Best params:", grid_search.best_params_)
