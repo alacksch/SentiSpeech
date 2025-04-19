@@ -14,19 +14,23 @@ def buildravdess(ravdess_path):
         8: 'surprise'
     }
 
+    desired_emotions = {'neutral', 'happy', 'sad', 'angry', 'surprise'}
     data = []
 
-    for actor_folder in sorted(os.listdir(ravdess_path)): # actor level loop
+    for actor_folder in sorted(os.listdir(ravdess_path)):
         actor_path = os.path.join(ravdess_path, actor_folder)
-        actor_id = int(actor_folder.split('_')[1])  # split into a list of something like ["Actor", "01"], it removes the _ for each actor, and we take index 1
+        if not os.path.isdir(actor_path):
+            continue
+        actor_id = int(actor_folder.split('_')[1])
 
-        for filename in sorted(os.listdir(actor_path)): # in-actor level loop
+        for filename in sorted(os.listdir(actor_path)):
             if filename.endswith('.wav'):
                 parts = filename.split('-')
-                emotion_code = int(parts[2]) # since emotion is the third number in the filename, and it splits the filename into a list of all the information
+                emotion_code = int(parts[2])
                 emotion = emotion_map[emotion_code]
+                if emotion not in desired_emotions:
+                    continue
                 full_path = os.path.join(ravdess_path, actor_folder, filename)
-
                 data.append([full_path, emotion, actor_id])
 
     return pd.DataFrame(data, columns=["relative_path", "emotion", "actor_id"])
