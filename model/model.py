@@ -2,7 +2,6 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
@@ -27,15 +26,13 @@ best_model = grid_search.best_estimator_
 print("Best params:", grid_search.best_params_)
 print("Accuracy:", grid_search.best_score_)
 
-best_model = grid_search.best_estimator_
 os.makedirs('packages', exist_ok=True)
+
 model_filename = 'packages/emotion_svm_model.joblib'
-joblib.dump(best_model, model_filename)
-
 scaler_filename = 'packages/scaler.joblib'
-joblib.dump(scaler, scaler_filename)
-
 label_encoder_filename = 'packages/label_encoder.joblib'
-joblib.dump(label_encoder, label_encoder_filename)
 
+joblib.dump(best_model, model_filename)
+joblib.dump(scaler, scaler_filename)
+joblib.dump(label_encoder, label_encoder_filename)
 print("Model, scaler, and label encoder have been saved successfully.")
