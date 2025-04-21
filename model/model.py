@@ -1,38 +1,32 @@
-import sys
 import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.svm import SVC
-from utilities.build_data import prepare_data
 import joblib
 
+from sklearn.decomposition import PCA
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from utilities.build_data import prepare_data
+
 data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'audio_speech_actors_01-24'))
+
 X, y = prepare_data(data_path)
+encoder = LabelEncoder()
+y_encoded = encoder.fit_transform(y)
 
-label_encoder = LabelEncoder()
-y_encoded = label_encoder.fit_transform(y)
+pipe = Pipeline([('scaler', StandardScaler()), ('pca', PCA()), ('svc', SVC())])
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+param_grid = {
+    'pca__n_components': [0.90, 0.95, 0.99],
+    'svc__C': [0.1, 1, 10, 100],
+    'svc__kernel': ['linear', 'rbf', 'poly', 'sigmoid'],
+    'svc__gamma': ['scale', 'auto']
+}
 
-param_grid = {'C': [0.1, 1, 10, 100], 'kernel': ['linear', 'rbf'], 'gamma': ['scale', 'auto']}
+grid = GridSearchCV(pipe, param_grid, cv=10, scoring='accuracy', n_jobs=-1)
+grid.fit(X, y_encoded)
 
-grid_search = GridSearchCV(SVC(), param_grid, cv=5, scoring='accuracy', n_jobs=-1)
-grid_search.fit(X_scaled, y_encoded)
+print("CV accuracy with the best parameters possible:", grid.best_score_)
 
-best_model = grid_search.best_estimator_
-print("Best params:", grid_search.best_params_)
-print("Accuracy:", grid_search.best_score_)
-
-os.makedirs('packages', exist_ok=True)
-
-model_filename = 'packages/emotion_svm_model.joblib'
-scaler_filename = 'packages/scaler.joblib'
-label_encoder_filename = 'packages/label_encoder.joblib'
-
-joblib.dump(best_model, model_filename)
-joblib.dump(scaler, scaler_filename)
-joblib.dump(label_encoder, label_encoder_filename)
-print("Model, scaler, and label encoder have been saved successfully.")
+joblib.dump(grid.best_estimator_, 'packages/emotion_pca_svm_pipeline.joblib')
+joblib.dump(encoder, 'packages/label_encoder.joblib')
