@@ -1,6 +1,6 @@
 # 🎤 SentiSpeech: Speech Emotion Recognition using SVM
 
-**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on the RAVDESS dataset, the system analyzes vocal characteristics like pitch, tone, and energy to recognize emotions such as **happy**, **sad**, **angry**, **calm**, and more.
+**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on the RAVDESS dataset, the system analyzes vocal characteristics like pitch, tone, and energy to recognize emotions such as **happy**, **sad**, **angry** and more.
 
 ---
 
@@ -29,12 +29,9 @@ For more details and download, visit: [RAVDESS on Zenodo](https://zenodo.org/rec
 ## 🧠 Emotions Detected
 
 - 😐 Neutral  
-- 😌 Calm  
 - 😊 Happy  
 - 😢 Sad  
 - 😠 Angry  
-- 😨 Fearful  
-- 😖 Disgust  
 - 😲 Surprised  
 
 ---
