@@ -14,7 +14,6 @@ def buildravdess(ravdess_path):
         8: 'surprise'
     }
 
-    desired_emotions = {'neutral', 'happy', 'sad', 'angry', 'surprise'}
     data = []
 
     for actor_folder in sorted(os.listdir(ravdess_path)):
@@ -28,8 +27,6 @@ def buildravdess(ravdess_path):
                 parts = filename.split('-')
                 emotion_code = int(parts[2])
                 emotion = emotion_map[emotion_code]
-                if emotion not in desired_emotions:
-                    continue
                 full_path = os.path.join(ravdess_path, actor_folder, filename)
                 data.append([full_path, emotion, actor_id])
 

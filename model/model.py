@@ -23,7 +23,7 @@ param_grid = {
     'svc__gamma': ['scale', 'auto']
 }
 
-grid = GridSearchCV(pipe, param_grid, cv=10, scoring='accuracy', n_jobs=-1)
+grid = GridSearchCV(pipe, param_grid, cv=5, scoring='f1_weighted', n_jobs=-1)
 grid.fit(X, y_encoded)
 
 print("CV accuracy with the best parameters possible:", grid.best_score_)
