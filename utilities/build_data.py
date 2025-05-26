@@ -5,12 +5,9 @@ import numpy as np
 from utilities.build_ravdess import buildravdess
 from utilities.build_cremad import buildcremad
 from utilities.feature_extraction import extract_features
-
-
 from utilities.build_tess import buildtess
-from utilities.build_MSIMPROV import buildmspimprov
 
-def prepare_data(ravdess_path=None, cremad_path=None, tess_path=None, msp_path=None, duration=2.5, sample_rate=22050, top_db=20):
+def prepare_data(ravdess_path=None, cremad_path=None, tess_path=None, duration=2.5, sample_rate=22050, top_db=20):
     dfs = []
     info_msgs = []
 
@@ -28,11 +25,6 @@ def prepare_data(ravdess_path=None, cremad_path=None, tess_path=None, msp_path=N
         df_tess = buildtess(tess_path)
         dfs.append(df_tess)
         info_msgs.append(f"[INFO] Added {len(df_tess)} TESS files.")
-
-    if msp_path:
-        df_msp = buildmspimprov(msp_path)
-        dfs.append(df_msp)
-        info_msgs.append(f"[INFO] Added {len(df_msp)} MSP-IMPROV files.")
 
     if not dfs:
         raise ValueError("At least one dataset path must be provided.")

@@ -8,7 +8,7 @@ def buildtess(tess_path):
         'fear': 'fear',
         'happy': 'happy',
         'neutral': 'neutral',
-        'ps': 'happy',  # pleasant surprise ≈ happy
+        'ps': 'happy',
         'sad': 'sad'
     }
 
