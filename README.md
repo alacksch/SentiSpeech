@@ -1,28 +1,36 @@
 # 🎤 SentiSpeech: Speech Emotion Recognition using SVM
 
-**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on the RAVDESS dataset, the system analyzes vocal characteristics like pitch, tone, and energy to recognize emotions such as **happy**, **sad**, **angry** and more.
+**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on datasets like **RAVDESS**, **CREMA-D**, **TESS**, and **MSP-IMPROV**, the system analyzes vocal characteristics such as pitch, tone, and energy to recognize emotions like **neutral**, **happy**, **sad**, and **angry**.
 
 ---
 
-## 📁 Dataset
+## 📁 Datasets
 
-This project uses the **RAVDESS** (Ryerson Audio-Visual Database of Emotional Speech and Song) audio-only speech subset:
-- 24 professional actors (12 male, 12 female)
-- 1440 recordings
-- 8 emotions (each with normal & strong intensity)
-- Neutral North American accent
+This project supports multiple popular emotional speech datasets:
 
-For more details and download, visit: [RAVDESS on Zenodo](https://zenodo.org/record/1188976)
+- **RAVDESS** (Ryerson Audio-Visual Database of Emotional Speech and Song)
+  - [RAVDESS on Zenodo](https://zenodo.org/record/1188976)  
+  - [RAVDESS on Kaggle](https://www.kaggle.com/uwrfkaggler/ravdess-emotional-speech-audio)
+
+- **CREMA-D** (Crowd-sourced Emotional Multimodal Actors Dataset)  
+  - [CREMA-D on Kaggle](https://www.kaggle.com/datasets/ejlok1/cremad)
+
+- **TESS** (Toronto emotional speech set)  
+  - [TESS on Kaggle](https://www.kaggle.com/ejlok1/toronto-emotional-speech-set-tess)
+
+- **MSP-IMPROV** (Multimodal Corpus of Emotional Speech)  
+  - [MSP-IMPROV on Kaggle](https://www.kaggle.com/datasets/pratyanchasharma01/ms-improv)
 
 ---
 
 ## 🔍 Features
 
-- 🎧 Audio loading and preprocessing
-- 📊 Feature extraction using Librosa (MFCC, Chroma, Spectral Contrast, etc.)
-- 🧠 Emotion parsing from structured filenames
-- 🧪 Model training with Support Vector Machine (SVM)
-- 📈 Performance evaluation (accuracy, F1-score, confusion matrix)
+- 🎧 Audio loading and preprocessing with Librosa  
+- 📊 Feature extraction: MFCCs, Chroma, Spectral Contrast, Pitch, RMS, Zero Crossing Rate, Spectral Bandwidth, and more  
+- 🧠 Emotion parsing from structured filenames and metadata  
+- 🧪 Model training pipeline with StandardScaler, Linear Discriminant Analysis (LDA), and Support Vector Machine (SVM)  
+- 🔄 Hyperparameter tuning using Grid Search with cross-validation  
+- 📈 Good for generalization for many languages because of how many audio files are provided and how different they all are.
 
 ---
 
@@ -32,7 +40,14 @@ For more details and download, visit: [RAVDESS on Zenodo](https://zenodo.org/rec
 - 😊 Happy  
 - 😢 Sad  
 - 😠 Angry  
-- 😲 Surprised  
 
 ---
 
+## 🚀 Getting Started
+
+1. Prepare datasets directories for RAVDESS, CREMA-D, TESS, and/or MSP-IMPROV  
+2. Run the data preparation and feature extraction pipeline  
+3. Train the model using the model.py file
+4. Predict using the saved joblib file
+
+---
