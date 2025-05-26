@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 
-# Used to build the dataset we pass to the model creation file. (added this since I couldn't commit my changes cus pycharm bugged :V)
 def buildravdess(ravdess_path):
     emotion_map = {
         1: 'neutral',
@@ -14,7 +13,7 @@ def buildravdess(ravdess_path):
         8: 'surprise'
     }
 
-    desired_emotions = {'neutral', 'happy', 'sad', 'angry', 'surprise'}
+    desired_emotions = {'neutral', 'happy', 'sad', 'angry'}
     data = []
 
     for actor_folder in sorted(os.listdir(ravdess_path)):
