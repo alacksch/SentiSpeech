@@ -32,7 +32,6 @@ For more details and download, visit: [RAVDESS on Zenodo](https://zenodo.org/rec
 - 😊 Happy  
 - 😢 Sad  
 - 😠 Angry  
-- 😲 Surprised  
 
 ---
 
