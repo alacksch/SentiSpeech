@@ -1,6 +1,6 @@
 # 🎤 SentiSpeech: Speech Emotion Recognition using SVM
 
-**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on datasets like **RAVDESS**, **CREMA-D**, **TESS**, and **MSP-IMPROV**, the system analyzes vocal characteristics such as pitch, tone, and energy to recognize emotions like **neutral**, **happy**, **sad**, and **angry**.
+**SentiSpeech** is a machine learning project that detects and classifies human emotions from speech using audio feature extraction and a Support Vector Machine (SVM) classifier. Built on datasets like **RAVDESS**, **CREMA-D** and **TESS**, the system analyzes vocal characteristics such as pitch, tone, and energy to recognize emotions like **neutral**, **happy**, **sad**, and **angry**.
 
 ---
 
@@ -17,9 +17,6 @@ This project supports multiple popular emotional speech datasets:
 
 - **TESS** (Toronto emotional speech set)  
   - [TESS on Kaggle](https://www.kaggle.com/ejlok1/toronto-emotional-speech-set-tess)
-
-- **MSP-IMPROV** (Multimodal Corpus of Emotional Speech)  
-  - [MSP-IMPROV on Kaggle](https://www.kaggle.com/datasets/pratyanchasharma01/ms-improv)
 
 ---
 
@@ -47,7 +44,7 @@ This project supports multiple popular emotional speech datasets:
 
 1. Prepare datasets directories for RAVDESS, CREMA-D, TESS, and/or MSP-IMPROV  
 2. Run the data preparation and feature extraction pipeline  
-3. Train the model using the model.py file
-4. Predict using the saved joblib file
+3. Train the model using model.py
+4. Predict using the saved model
 
 ---
